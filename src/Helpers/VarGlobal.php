@@ -12,9 +12,10 @@ if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
 } else {
     $web_root = 'http://' . $_SERVER['HTTP_HOST'];
 }
-$web_root .= '/' . implode("/",$arrPath) . "/" ;
+$web_root .= '/' . implode("/",$arrPath) . "" ;
 
 define("WEB_ROOT", $web_root);
+
 
 
 

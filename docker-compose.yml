@@ -1,0 +1,52 @@
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: "./docker/Dockerfile"
+    working_dir: /var/www/html
+    container_name: duan1
+    volumes:
+      - "./:/var/www/html"
+      - "./docker/apache:/var/log/apache2"
+      - "./docker/php:/var/log/php"
+      - "./docker/config/apache.conf:/etc/apache2/sites-available/000-default.conf"
+    ports:
+      - "8085:80"
+    networks:
+      - myapp_net
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    image: mariadb:latest
+    container_name: duan1_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: asm_php2
+      MYSQL_ROOT_PASSWORD: duyvan2001
+    ports:
+      - "3301:3306"
+    networks:
+      - myapp_net
+    volumes:
+      - db_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: duan1_phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - "8086:80"
+    networks:
+      - myapp_net
+    depends_on:
+      - db
+networks:
+  myapp_net:
+    driver: bridge
+volumes:
+  db_data:
+    driver: local
