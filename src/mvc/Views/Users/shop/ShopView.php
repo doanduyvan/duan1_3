@@ -254,7 +254,6 @@
   function renderpagination(totalpage) {
     let paginationlist = document.getElementById("paginationlist");
     paginationlist.innerHTML = "";
-    console.log(totalpage);
     if(totalpage <= 1) return;
     let startP = page == 1 ? 1 : (page == totalpage ? (page - 2 <= 1 ? 1 : page - 2) : page - 1);
     let endP = startP == 1 ? (startP + 2 >= totalpage ? totalpage : startP + 2) : (page + 1 >= totalpage ? totalpage : page + 1);

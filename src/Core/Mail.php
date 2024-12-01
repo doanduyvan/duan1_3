@@ -32,7 +32,7 @@ class Mail{
         $this->mail->isHTML(true);
         $this->mail->Subject = $subject;
         $this->mail->Body = $body;
-        $this->mail->AltBody = "Máy bạn cùi quá không hỗ trợ HTML vứt mẹ máy đi";
+        $this->mail->AltBody = "Máy bạn cùi quá không hỗ trợ HTML";
     }
 
     public function send(){

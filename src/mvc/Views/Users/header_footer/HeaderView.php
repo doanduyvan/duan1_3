@@ -197,7 +197,7 @@
               <div class="col-lg-5 pr-0">
                 <ul class="nav navbar-nav navbar-right right_nav pull-right">
                   <li class="nav-item">
-                    <a href="#" class="icons">
+                    <a href="#" class="icons btn-search">
                       <i class="ti-search" aria-hidden="true"></i>
                     </a>
                   </li>
@@ -245,10 +245,6 @@
                       <i class="ti-user" aria-hidden="true"></i>
                     </a>
 
-                    <!-- <a href="auth/signin" class="icons">
-                      <i class="ti-user" aria-hidden="true"></i>
-                    </a> -->
-
                     <?php
                     if (isset($_SESSION['account'])) {
                     ?>
@@ -267,10 +263,6 @@
                     <?php
                     }
                     ?>
-
-
-
-
                   </li>
 
                 </ul>
@@ -281,4 +273,170 @@
       </div>
     </div>
   </header>
+
+  <style>
+    .box-search-fixed * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .box-search-fixed {
+      position: fixed;
+      top: 0;
+      left: -510px;
+      width: 500px;
+      height: 100vh;
+      background-color: white;
+      box-shadow: 0 0 10px gray;
+      z-index: 99;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .box-search-fixed.show {
+      left: 0;
+    }
+
+    .box-search-input {
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .box-search-input input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .box-search-render ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .box-search-render ul li:hover {
+      background-color: #f9f9f9;
+    }
+
+    .box-search-render ul a {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .box-search-render ul a img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+    }
+
+    .box-search-render ul a .box-search-in4 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .box-search-render ul a .box-search-in4 p:first-child {
+      font-weight: 600;
+      color: black;
+    }
+
+    .box-search-render ul a .box-search-in4 p:last-child {
+      color: #71CD14;
+    }
+  </style>
+
+  <div class="box-search-fixed">
+    <div class="box-search">
+      <div class="box-search-input">
+        <input type="text" placeholder="Search" class="input-search">
+      </div>
+      <div class="box-search-render">
+        <ul class="box-ul-search">
+        </ul>
+      </div>
+    </div>
+  </div>
   <!--================Header Menu Area =================-->
+
+
+  <script>
+    const btnSearch = document.querySelector(".btn-search");
+    const boxSearchFixed = document.querySelector(".box-search-fixed");
+    btnSearch.onclick = function(e) {
+      e.preventDefault();
+      boxSearchFixed.classList.toggle("show");
+    }
+
+    document.addEventListener("click", function(e) {
+      if (!e.target.closest(".box-search-fixed") && !e.target.closest(".btn-search")) {
+        boxSearchFixed.classList.remove("show");
+      }
+    })
+
+
+    const uriSearch = "<?= WEB_ROOT ?>shop/searchproduct";
+
+    const inputSearch = document.querySelector(".input-search");
+    inputSearch.addEventListener('input', debounce(function(e) {
+      const value = e.target.value;
+
+      const data = {
+        value: value
+      }
+
+      const options = {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          value: value
+        })
+      }
+
+      fetch(uriSearch, options)
+        .then(res => res.json())
+        .then(data => {
+          renderSearch(data);
+        })
+        .catch(err => console.log(err));
+
+    }, 300)); 
+
+    function debounce(func, delay) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+      };
+    }
+
+    function renderSearch(data) {
+      const OldboxUlSearch = document.querySelector(".box-ul-search");
+      const boxUlSearch = document.createElement("ul");
+      boxUlSearch.classList.add("box-ul-search");
+
+      data.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+        <a href="shop/showproduct/${item.id}">
+        <img src="public/img/imgproducts/${item.img_url}" alt="">
+        <div class="box-search-in4">
+        <p>${item.product_name}</p>
+        <p>${format(item.price_sale)}d</p>
+        </div>
+        </a>
+        `;
+        boxUlSearch.appendChild(li);
+      });
+
+
+      OldboxUlSearch.replaceWith(boxUlSearch);
+    }
+  </script>

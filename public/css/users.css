@@ -3,8 +3,8 @@
 }
 
 .dv_account .div1{
-    padding: 5px;
-    background-color: rgb(233, 230, 230);
+    padding: 10px;
+    background-color: rgb(253, 253, 253);
     position: absolute;
     top: 80%;
     right: -50%;
@@ -15,21 +15,25 @@
     align-items: center;
     border-radius: 5px;
     display: none;
+    box-shadow: 0 0 15px rgba(201, 201, 201, 0.5);
 }
 
 .dv_account .div1 a{
     text-decoration: none;
     color: #ffffff;
-    padding: 5px;
+    padding: 10px 50px;
     margin: 5px;
-    border: 1px solid #000;
+    border: none;
     border-radius: 5px;
     white-space: nowrap;
-    background-color: rgb(114, 73, 228);
-    padding-left: 10px;
-    padding-right: 10px;
+    background-color: rgb(113 205 20 / 80% );
     flex: 1;
 }
+
+.dv_account .div1 a:hover{
+    background-color: rgb(113 205 20 );
+}
+
 .dv_account .div1 p{
     margin: 5px;
     padding: 5px;

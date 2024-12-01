@@ -24,7 +24,8 @@ class Routers{
             "category" => ["index","add","edit","addpost","updatepost","delpost"],
             "brand" => ["index","add","edit","addpost","updatepost","delpost"],
             "products" => ["index","add","edit","addpost","updatepost","delpost"],
-            "order" => ["index"]
+            "order" => ["index"],
+            "account" => ["index","add"]
             ];
         }
 }

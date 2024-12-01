@@ -14,11 +14,25 @@ if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
 }
 $web_root .= '/' . implode("/",$arrPath) . "" ;
 
+// variable global
+
+// $web_root = 'http://localhost/duan1_3/';
+$web_root = 'http://localhost:8085/';
+
+
 define("WEB_ROOT", $web_root);
 
 
+// db info
 
+// define("DB_HOST", "localhost:3307");
+// define("DB_NAME", "duan1_3");
+// define("DB_USER", "root");
+// define("DB_PASS", "");
 
-
+define("DB_HOST", "db");
+define("DB_NAME", "duan1_3");
+define("DB_USER", "root");
+define("DB_PASS", "123");
 
 

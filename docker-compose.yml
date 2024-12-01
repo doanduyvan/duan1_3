@@ -23,8 +23,8 @@ services:
     container_name: duan1_db
     restart: always
     environment:
-      MYSQL_DATABASE: asm_php2
-      MYSQL_ROOT_PASSWORD: duyvan2001
+      MYSQL_DATABASE: duan1_3
+      MYSQL_ROOT_PASSWORD: 123
     ports:
       - "3301:3306"
     networks:
@@ -39,7 +39,7 @@ services:
       PMA_HOST: db
       PMA_PORT: 3306
     ports:
-      - "8086:80"
+      - "3308:80"
     networks:
       - myapp_net
     depends_on:

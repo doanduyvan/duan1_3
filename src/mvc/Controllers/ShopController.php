@@ -81,5 +81,13 @@ class ShopController extends Controller{
             echo json_encode($test);
         }
     }
+
+    public function searchproduct(){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $dataresquest = json_decode(file_get_contents("php://input"),true);
+            $data = $this->productsModel->searchproduct($dataresquest['value']);
+            echo json_encode($data);
+        }
+    }
         
 }

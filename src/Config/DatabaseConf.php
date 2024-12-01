@@ -6,10 +6,10 @@ namespace Config;
 class DatabaseConf{
     public static function getDatabase(){
         return [
-            "host" => "db",
-            "dbname" => "asm_php2",
-            "username" => "root",
-            "password" => "duyvan2001"
+            "host" => DB_HOST,
+            "dbname" => DB_NAME,
+            "username" => DB_USER,
+            "password" => DB_PASS
         ];
     }
 }

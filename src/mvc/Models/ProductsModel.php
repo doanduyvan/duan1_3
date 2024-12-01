@@ -153,4 +153,11 @@ class ProductsModel extends BaseModel
         }
         return true;
     }
+
+    function searchproduct($key)
+    {
+        $sql = "SELECT pr.id, pr.product_name, pr.img_url, pr.price_sale, pr.price FROM $this->table as pr WHERE product_name LIKE '%$key%' limit 10";
+        $data = $this->query($sql);
+        return $data->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

@@ -2,7 +2,6 @@
 
 namespace Models;
 
-use Config\Database;
 use Config\DatabaseConf;
 use PDO;
 

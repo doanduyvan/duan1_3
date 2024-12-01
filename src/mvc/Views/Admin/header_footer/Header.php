@@ -51,6 +51,8 @@
                     <li class="<?= isset($currentMenu) && $currentMenu == 3 ? "active" : "" ?>"><a href="admin/brand">Brands</a></li>
                     <li class="<?= isset($currentMenu) && $currentMenu == 4 ? "active" : "" ?>"><a href="admin/products">Products</a></li>
                     <li class="<?= isset($currentMenu) && $currentMenu == 5 ? "active" : "" ?>"><a href="admin/order">Orders</a></li>
+                    <li class="<?= isset($currentMenu) && $currentMenu == 6 ? "active" : "" ?>"><a href="admin/account/add">Add Account</a></li>
+
                 </ul>
             </div>
 
@@ -61,7 +63,6 @@
                 <ul class="fix_info">
                     <li class="mt-[10px] px-[20px]"><a class="block p-[10px]" href="">My Profile</a></li>
                     <li class="px-[20px]"><a class="block p-[10px]" href="admin/auth/signout">Log Out</a></li>
-
                 </ul>
             </div>
 

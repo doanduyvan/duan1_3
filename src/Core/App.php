@@ -9,6 +9,7 @@ class App
 
     function __construct($url)
     {
+
         $arrUrl = $url;
 
         if (isset($arrUrl[0]) && $arrUrl[0] == 'API') {
@@ -73,6 +74,7 @@ class App
         if (class_exists($nameSpace) && $checkAction) {
             call_user_func_array([new $nameSpace, $action], $this->params);
         }else{
+            echo $nameSpace . " - " . $action;
             echo "Lỗi chưa xác định, khi chưa đăng nhập vào admin mà truyền action vào url";
         }
     }
