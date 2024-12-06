@@ -251,6 +251,7 @@
                       <div class="div1">
                         <p><?= $_SESSION['account']['name'] ?></p>
                         <a href="order">My Order</a>
+                        <a href="profile">Profile</a>
                         <a href="auth/signout">Log out</a>
                       </div>
                     <?php

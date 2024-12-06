@@ -133,13 +133,13 @@
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Specification</a>
+        <a class="nav-link hidden" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Specification</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Comments</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
+        <a class="nav-link hidden" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -222,7 +222,7 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="comment_list">
-              <div class="review_item">
+              <!-- <div class="review_item">
                 <div class="media">
                   <div class="d-flex">
                     <img src="<?= WEB_ROOT ?>public/lib/img/product/single-product/review-1.png" alt="" />
@@ -230,7 +230,6 @@
                   <div class="media-body">
                     <h4>Blake Ruiz</h4>
                     <h5>12th Feb, 2017 at 05:56 pm</h5>
-                    <a class="reply_btn" href="#">Reply</a>
                   </div>
                 </div>
                 <p>
@@ -239,43 +238,7 @@
                   aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                   ullamco laboris nisi ut aliquip ex ea commodo
                 </p>
-              </div>
-              <div class="review_item reply">
-                <div class="media">
-                  <div class="d-flex">
-                    <img src="<?= WEB_ROOT ?>public/lib/img/product/single-product/review-2.png" alt="" />
-                  </div>
-                  <div class="media-body">
-                    <h4>Blake Ruiz</h4>
-                    <h5>12th Feb, 2017 at 05:56 pm</h5>
-                    <a class="reply_btn" href="#">Reply</a>
-                  </div>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco laboris nisi ut aliquip ex ea commodo
-                </p>
-              </div>
-              <div class="review_item">
-                <div class="media">
-                  <div class="d-flex">
-                    <img src="<?= WEB_ROOT ?>public/lib/img/product/single-product/review-3.png" alt="" />
-                  </div>
-                  <div class="media-body">
-                    <h4>Blake Ruiz</h4>
-                    <h5>12th Feb, 2017 at 05:56 pm</h5>
-                    <a class="reply_btn" href="#">Reply</a>
-                  </div>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco laboris nisi ut aliquip ex ea commodo
-                </p>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col-lg-6">
@@ -284,22 +247,7 @@
               <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" />
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" />
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="number" name="number" placeholder="Phone Number" />
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <textarea class="form-control" name="message" id="message" rows="1" placeholder="Message"></textarea>
+                    <textarea class="form-control" name="message" id="message" rows="3" placeholder="Message" required></textarea>
                   </div>
                 </div>
                 <div class="col-md-12 text-right">
@@ -510,7 +458,7 @@
 <script>
   const product = <?= json_encode($product) ?>;
   const imgdetails = <?= json_encode($imgdetails) ?>;
-  console.log(product);
+  const idProduct = <?= $idProduct ?>;
 
   const price = document.getElementById('price');
   price.innerHTML = `
@@ -578,7 +526,6 @@
 
     const url = "cart/addcartpost";
     myFetch(url, data, function(data) {
-      console.log(data);
       if (data.status == 1) {
         toast({
           title: "success",
@@ -593,9 +540,90 @@
           type: "warning"
         });
       }
+      console.log(data);
 
     });
     return false;
+  }
+
+  // post comment
+
+  const formComment = document.getElementById('contactForm');
+  formComment.addEventListener('submit',function(e){
+    e.preventDefault();
+    const message = document.getElementById('message').value;
+    if(message.trim() == ''){
+      toast({
+        title: "Warning",
+        message: "Bạn cần nhập nội dung bình luận",
+        type: "warning"
+      });
+      return;
+    }
+    const data = {
+      message: message,
+      idProduct: idProduct
+    };
+
+    const url = "shop/addcomment";
+
+    myFetch(url,data,function(data){
+      console.log(data);
+      if(data.status == 1){
+        toast({
+          title: "success",
+          message: data.message,
+          type: "success"
+        });
+        getComment();
+      }else{
+        toast({
+          title: "Warning",
+          message: data.message,
+          type: "warning"
+        });
+      }
+    });
+  });
+
+
+  function getComment(){
+    const url = "shop/getcomment";
+    const data = {
+      idProduct: idProduct
+    };
+    myFetch(url,data,function(data){
+      console.log(data);
+      renderComment(data);
+    });
+  }
+
+  getComment();
+
+
+  function renderComment($data){
+    const oldList = document.querySelector('.comment_list');
+    const newList = document.createElement('div');
+    newList.classList.add('comment_list');
+    $data.forEach(item =>{
+      newList.innerHTML += `
+                    <div class="review_item">
+                <div class="media">
+                  <div class="d-flex">
+                    <img src="public/lib/img/product/single-product/review-1.png" alt="" />
+                  </div>
+                  <div class="media-body">
+                    <h4>${item.fullname}</h4>
+                    <h5>${item.created_at}</h5>
+                  </div>
+                </div>
+                <p>
+                  ${item.comment}
+                </p>
+              </div>
+      `;
+    });
+    oldList.replaceWith(newList);
   }
 
 

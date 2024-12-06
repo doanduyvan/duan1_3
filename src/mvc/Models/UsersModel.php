@@ -11,6 +11,14 @@ class UsersModel extends BaseModel
         parent::__construct();
     }
 
+
+    public function getUserById($id){
+        $data = $this->getbyid($this->table,$id);
+        unset($data['password']);
+        unset($data['roles']);
+        return $data;
+    }
+
     public function addusermodel($data){
 
       return $this->addrow($this->table,$data,['roles']);
@@ -42,6 +50,7 @@ class UsersModel extends BaseModel
     }
 
     public function changePassword($idemail,$password){
+        $password = addslashes($password);
         $sql = "UPDATE $this->table SET password = '$password' WHERE id = $idemail";
         return $this->query($sql);
     }
@@ -75,6 +84,30 @@ class UsersModel extends BaseModel
             'message' => 'Tài khoản đã được tạo, vui lòng kiểm tra email để lấy mật khẩu',
         ];
         return $dataRes;
+    }
+
+    public function editProfile($id,$data){
+        return $this->editrow($this->table,$id,$data,['roles']);
+    }
+
+    public function updatePass($id,$oldPass, $newPass){
+        $oldPass = addslashes($oldPass);
+        $newPass = addslashes($newPass);
+        $user = $this->getbyid($this->table,$id);
+        if(!$user){
+            return ['error' => 'Tài khoản không tồn tại'];
+        }
+        if($user['password'] != $oldPass){
+            return ['error' => 'Mật khẩu cũ không đúng'];
+        }
+        $dataSave = [
+            'password' => $newPass
+        ];
+        $res = $this->editrow($this->table,$id,$dataSave);
+        if($res){
+            return ['success' => 'Đổi mật khẩu thành công'];
+        }
+        return ['error' => 'Có lỗi xảy ra'];
     }
 
     public function randomPassword($length = 8){

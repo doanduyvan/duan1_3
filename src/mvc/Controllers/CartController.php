@@ -34,12 +34,24 @@ class CartController
                 $price = $product['price_sale'];
                 $name = $product['product_name'];
                 $img = $product['img_url'];
+
+                if($quantity > $product['stock_quantity']){
+                    $datarespon = [
+                        "status" => 0,
+                        "message" => "Số lượng sản phẩm trong kho không đủ"
+                    ];
+                    echo json_encode($datarespon);
+                    return;
+                }
+
                 Session::setcart($iduser,$idproduct,$name,$img,$quantity,$price);
                 $quantityproduct = Session::get('cart')['quantity'];
                 $datarespon = [
                     "status" => 1,
                     "message" => "Thêm sản phẩm vào giỏ hàng thành công",
-                    "quantityproduct" => $quantityproduct
+                    "quantityproduct" => $quantityproduct,
+                    'product' => $product,
+                    'currentcart' => Session::get('cart')
                 ];
                 echo json_encode($datarespon);
                 return;

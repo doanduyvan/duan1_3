@@ -14,6 +14,7 @@ class Routers{
             "blog" => ["index"],
             "order" => ["index"],
             "contact" => ["index"],
+            "profile" => ["index", "getprofile"],
             ];
         }
 

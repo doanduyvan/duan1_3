@@ -21,7 +21,9 @@
 .dv_account .div1 a{
     text-decoration: none;
     color: #ffffff;
-    padding: 10px 50px;
+    padding: 10px 0;
+    min-width: 140px;
+    text-align: center;
     margin: 5px;
     border: none;
     border-radius: 5px;
@@ -49,4 +51,8 @@
 
 .oneline{
     white-space: nowrap;
+}
+
+.hidden{
+    display: none;
 }
