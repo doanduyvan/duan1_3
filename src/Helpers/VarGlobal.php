@@ -17,7 +17,9 @@ $web_root .= '/' . implode("/",$arrPath) . "" ;
 // variable global
 
 // $web_root = 'http://localhost/duan1_3/';
-$web_root = 'http://localhost:8085/';
+// $web_root = 'http://localhost:8085/';
+$web_root = 'http://vps.fptduyvan.id.vn:8085/';
+
 
 
 define("WEB_ROOT", $web_root);
