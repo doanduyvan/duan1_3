@@ -120,8 +120,8 @@
         <div class="row">
           <div class="col-lg-7">
             <div class="float-left">
-              <p>Phone: +01 256 25 235</p>
-              <p>email: info@eiser.com</p>
+              <p>Phone: 09 256 25 235</p>
+              <p>email: vanddps37009@fpt.edu.vn</p>
             </div>
           </div>
           <div class="col-lg-5">
