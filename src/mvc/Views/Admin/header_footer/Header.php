@@ -52,7 +52,7 @@
                     <li class="<?= isset($currentMenu) && $currentMenu == 4 ? "active" : "" ?>"><a href="admin/products">Products</a></li>
                     <li class="<?= isset($currentMenu) && $currentMenu == 5 ? "active" : "" ?>"><a href="admin/order">Orders</a></li>
                     <li class="<?= isset($currentMenu) && $currentMenu == 6 ? "active" : "" ?>"><a href="admin/account/add">Add Account</a></li>
-
+                    <li class="<?= isset($currentMenu) && $currentMenu == 7 ? "active" : "" ?>"><a href="admin/account">Manage Account</a></li>
                 </ul>
             </div>
 

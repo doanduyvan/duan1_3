@@ -33,7 +33,7 @@ class BaseModel{
     // query chung chung
 
     function query($sql){
-            return $this->conn->query($sql);
+        return $this->conn->query($sql);
     }
 
     // select

@@ -10,19 +10,23 @@ class AccountControllerAdmin extends Controller
     public function __construct()
     {
         $this->UsersModel = new \Models\UsersModel();
-        $this->data['currentMenu'] = 3;
+        $this->data['currentMenu'] = 7;
         parent::Admin();
     }
 
     public function index()
     {
-        // $this->Render('Admin/accounts/ShowAccountView');
+        $this->data['accounts'] = $this->UsersModel->getAccountAdmin();
+        $this->Render('Admin/accounts/ManageAccountView', $this->data);
+
     }
 
     public function add()
     {
-        $this->Render('Admin/accounts/AddAccountView');
+        $this->data['currentMenu'] = 6;
+        $this->Render('Admin/accounts/AddAccountView', $this->data);
     }
+
 
     // post api
 

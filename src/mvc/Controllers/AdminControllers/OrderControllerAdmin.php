@@ -20,7 +20,8 @@ class OrderControllerAdmin extends Controller{
     public function index()
     {
         $this->data['status'] = $this->orderModel->status();
-        $this->data['orders'] = $this->orderModel->getallorder();
+        $datares = $this->orderModel->getallorder();
+        $this->data['orders'] = array_values($datares);
         $this->Render("Admin/order/OrderViewAdmin", $this->data);
     }
 

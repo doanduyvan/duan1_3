@@ -64,9 +64,19 @@ class UsersModel extends BaseModel
         if($checkEmail){
             return ['error' => 'Email đã tồn tại'];
         }
+
+        $dataSave = [
+            'email' => $email,
+            'password' => $password,
+            'fullname' => $fullname,
+            'roles' => 2,
+            'created_at' => NOW
+        ];
+
         try{
-        $sql = "INSERT INTO $this->table(email,password,fullname,roles) VALUES ('$email','$password','$fullname',2)";
-        $check = $this->query($sql);
+        // $sql = "INSERT INTO $this->table(email,password,fullname,roles) VALUES ('$email','$password','$fullname',2)";
+        // $check = $this->query($sql);
+        $check = $this->addrow($this->table,$dataSave,['roles']);
         if(!$check){
             throw new \PDOException();
         }
@@ -108,6 +118,19 @@ class UsersModel extends BaseModel
             return ['success' => 'Đổi mật khẩu thành công'];
         }
         return ['error' => 'Có lỗi xảy ra'];
+    }
+
+    public function getAccountAdmin(){
+        $sql = "SELECT * FROM $this->table WHERE roles = 2";
+        $result = $this->query($sql);
+        $data = [];
+        if($result->rowCount() > 0){
+            $data = $result->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        foreach($data as $key => $value){
+            unset($data[$key]['password']);
+        }
+        return $data;
     }
 
     public function randomPassword($length = 8){

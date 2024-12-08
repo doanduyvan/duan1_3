@@ -126,11 +126,41 @@
     .dv_container .dv_account>a:hover {
         text-decoration: underline;
     }
+
+    .div-filter {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .div-filter>button{
+        padding: 10px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .div-filter>button:hover{
+        background-color: gray;
+    }
+    .div-filter>button.active{
+        background-color: green;
+        color: white;
+    }
 </style>
 
 
 <div class="dv_container">
     <div class="dv_title">Orders</div>
+
+    <section class="filter">
+        <div class="div-filter">
+            <button class="active" data-status="">Tất Cả</button>
+            <button data-status="0">Chờ Sử lí</button>
+            <button data-status="1">Đã xác nhận</button>
+            <button data-status="2">Đang giao hàng</button>
+            <button data-status="3">Giao hàng thành công</button>
+            <button data-status="4">Đã hủy</button>
+        </div>
+    </section>
 
     <div class="dv_orders">
 
@@ -185,17 +215,29 @@
 
 <script>
     const orders = <?php echo json_encode($data['orders']); ?>;
-    const status = <?php echo json_encode($data['status']); ?>;
-    let arrorders = [];
-    for (let item in orders) {
-        arrorders.push(orders[item]);
-    }
-    arrorders.reverse();
+    const boxstatus = <?php echo json_encode($data['status']); ?>;
+    console.log(orders);
+    let arrorders = [...orders];
 
-    // console.log(status);
+    const btnsFilter = document.querySelectorAll('.div-filter button');
+    btnsFilter.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btnsFilter.forEach(btn => btn.classList.remove('active'));
+            btn.classList.add('active');
+            let status = btn.getAttribute('data-status');
+            if (status == "") {
+                arrorders = [...orders];
+            } else {
+                arrorders = orders.filter(item => item.status == status);
+            }
+            renderorder(arrorders, status);
+        });
+    });
+
     renderorder(arrorders, status);
 
-    function renderorder(data, status) {
+    function renderorder(data, status = null) {
+        status = boxstatus;
         const dv_orders = document.querySelector('.dv_orders');
         dv_orders.innerHTML = "";
 

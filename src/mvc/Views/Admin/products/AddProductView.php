@@ -2,7 +2,7 @@
     <!-- left -->
     <div class="px-[20px] max-w-[300px]">
         <!-- avatar -->
-        <div class="p-[10px] shadow rounded-[10px] bg-white">
+        <div class="p-[10px] shadow rounded-[10px] bg-white box-avatar">
             <p class="text-center font-bold mb-[20px]">Image</p>
             <div class="text-center"><img class="inline-block w-[200px] aspect-square object-cover" src="" alt=""></div>
             <input type="file" name="img">
@@ -58,11 +58,11 @@
 
             <div class="mt-[25px]">
                 <label class="font-medium mb-[10px] block" for="">Image Details</label>
-                <div class="img-details flex flex-wrap gap-[20px] pb-[15px]">
-                    <img src="../../img/laptop.png" alt="">
-                    <img src="../../img/laptop.png" alt="">
+                <div class="img-details flex flex-wrap gap-[20px] pb-[15px] boximgdetail">
+                    <!-- <img src="../../img/laptop.png" alt="">
+                    <img src="../../img/laptop.png" alt=""> -->
                 </div>
-                <input class="border w-full p-[10px] outline-none rounded-[5px]" type="file" name="img_details[]" multiple>
+                <input class="border w-full p-[10px] outline-none rounded-[5px] inputimgdetail" type="file" name="img_details[]" multiple>
             </div>
 
             <div class="mt-[25px]">
@@ -205,5 +205,26 @@
             
         });
 
+        const boxAvatar = document.querySelector('.box-avatar');
+        const inputAvatar = boxAvatar.querySelector('input[type="file"]');
+        const imgAvatar = boxAvatar.querySelector('img');
+        inputAvatar.addEventListener('change', function() {
+            const file = this.files[0];
+           const preview = URL.createObjectURL(file);
+              imgAvatar.src = preview;
+        });
+
+        const boxImgDetail = document.querySelector('.boximgdetail');
+        const inputImgDetail = document.querySelector('.inputimgdetail');
+        inputImgDetail.addEventListener('change', function() {
+            boxImgDetail.innerHTML = '';
+            const files = this.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                boxImgDetail.appendChild(img);
+            }
+        });
 
 </script>
