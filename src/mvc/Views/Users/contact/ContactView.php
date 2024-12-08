@@ -20,11 +20,27 @@
     </section>
     <!--================End Home Banner Area =================-->
 
+
+    <style>
+      .mymap{
+        width: 100%;
+      }
+
+      .mymap iframe{
+        width: 100%;
+        height: 480px;
+      }
+    </style>
+
     <!-- ================ contact section start ================= -->
   <section class="section_gap">
     <div class="container">
       <div class="d-none d-sm-block mb-5 pb-4">
-        <div id="map" style="height: 480px;"></div>
+        <!-- <div id="map" style="height: 480px;"></div> -->
+         <div class="mymap">
+         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3853.769606619687!2d108.16736761071485!3d16.075767084540423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218e6e72e66f5%3A0x46619a0e2d55370a!2zMTM3IE5ndXnhu4VuIFRo4buLIFRo4bqtcCwgVGhhbmggS2jDqiBUw6J5LCBMacOqbiBDaGnhu4N1LCDEkMOgIE7hurVuZywgVmnhu4d0IE5hbQ!5e1!3m2!1svi!2s!4v1733672738899!5m2!1svi!2s" width="" height="" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+         </div>
+
         <script>
           function initMap() {
             var uluru = {lat: -25.363, lng: 131.044};
@@ -47,7 +63,7 @@
           }
           
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script> -->
         
       </div>
 
@@ -92,21 +108,21 @@
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-home"></i></span>
             <div class="media-body">
-              <h3>Buttonwood, California.</h3>
-              <p>Rosemead, CA 91770</p>
+              <h3>Đà Nẵng.</h3>
+              <p>137 Nguyễn Thị Thập, Hòa Minh, Liên Chiểu</p>
             </div>
           </div>
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
             <div class="media-body">
-              <h3><a href="tel:454545654">00 (440) 9865 562</a></h3>
+              <h3><a href="tel:454545654">0986 556 227</a></h3>
               <p>Mon to Fri 9am to 6pm</p>
             </div>
           </div>
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-email"></i></span>
             <div class="media-body">
-              <h3><a href="mailto:support@colorlib.com">support@colorlib.com</a></h3>
+              <h3><a href="mailto:support@colorlib.com">vanddps37009@fpt.edu.vn</a></h3>
               <p>Send us your query anytime!</p>
             </div>
           </div>

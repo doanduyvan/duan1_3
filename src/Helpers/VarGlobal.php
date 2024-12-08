@@ -17,9 +17,9 @@ $web_root .= '/' . implode("/",$arrPath) . "" ;
 // variable global
 
 // $web_root = 'http://localhost/duan1_3/';
-$web_root = 'http://localhost:8085/';
+// $web_root = 'http://localhost:8085/';
 // $web_root = 'http://vps.fptduyvan.id.vn:8085/';
-// $web_root = 'https://web2.fptduyvan.id.vn/';
+$web_root = 'https://web2.fptduyvan.id.vn/';
 
 
 
@@ -29,14 +29,14 @@ define("WEB_ROOT", $web_root);
 
 // db info
 
-// define("DB_HOST", "localhost:3307");
+define("DB_HOST", "localhost");
+define("DB_NAME", "duan1");
+define("DB_USER", "doanduyvan");
+define("DB_PASS", "doanduyvan");
+
+// define("DB_HOST", "db");
 // define("DB_NAME", "duan1_3");
 // define("DB_USER", "root");
-// define("DB_PASS", "");
-
-define("DB_HOST", "db");
-define("DB_NAME", "duan1_3");
-define("DB_USER", "root");
-define("DB_PASS", "123");
+// define("DB_PASS", "123");
 
 
