@@ -56,3 +56,43 @@
 .hidden{
     display: none;
 }
+
+.home_banner_area{
+    background: url("/public/lib/img/banner/banner-bg2.jpg") no-repeat center bottom;
+    background-size: cover;
+    /* animation: BannerfadeIn 0.3s ease-in-out; */
+}
+
+.bannerFadeIn{
+    animation: BannerfadeIn 0.5s linear;
+}
+
+.bannerFadeOut{
+    animation: BannerfadeOut 0.5s linear forwards;
+}
+
+@keyframes BannerfadeIn {
+    0% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes BannerfadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.offer_area{
+    background: url("/public/lib/img/offer-bg1.png") no-repeat center;
+}
+
+.offer_area *{
+    color: white !important;
+}

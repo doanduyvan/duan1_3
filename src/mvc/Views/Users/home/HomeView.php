@@ -34,6 +34,34 @@
 </section>
 <!--================End Home Banner Area =================-->
 
+<script>
+
+  const arrBaner = [
+    '/public/lib/img/banner/banner-bg.jpg',
+    '/public/lib/img/banner/banner-bg1.jpg',
+    '/public/lib/img/banner/banner-bg2.jpg',
+  ]
+
+  const box = document.querySelector('.home_banner_area');
+  let i = 0;
+  setInterval(() => {
+    box.style.background = `url(${arrBaner[i]}) no-repeat center bottom`;
+    box.classList.remove('bannerFadeIn');
+    box.classList.remove('bannerFadeOut');
+    setTimeout(() => {
+        box.classList.add('bannerFadeIn');
+    }, 10);
+
+    setTimeout(() => {
+        box.classList.add('bannerFadeOut');
+    }, 4500);
+
+    i++;
+    if (i >= arrBaner.length) i = 0;
+  }, 5000);
+
+</script>
+
 <!-- Start feature Area -->
 <section class="feature-area section_gap_bottom_custom">
   <div class="container">
@@ -134,10 +162,10 @@
 <!--================ Offer Area =================-->
 <section class="offer_area">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="offset-lg-4 col-lg-6 text-center">
+    <div class="row">
+      <div class="col-lg-6 text-center">
         <div class="offer_content">
-          <h3 class="text-uppercase mb-40">all men’s collection</h3>
+          <h3 class="text-uppercase mb-40">all collection</h3>
           <h2 class="text-uppercase">50% off</h2>
           <a href="#" class="main_btn mb-20 mt-5">Discover Now</a>
           <p>Limited Time Offer</p>
@@ -175,35 +203,6 @@
 
       <div class="col-lg-6 mt-5 mt-lg-0">
         <div class="row" id="newfour">
-          <!-- <div class="col-lg-6 col-md-6">
-            <div class="single-product">
-              <div class="product-img">
-                <img class="img-fluid w-100" src="<?= WEB_ROOT ?>public/lib/img/product/new-product/n1.jpg" alt="" />
-                <div class="p_icon">
-                  <a href="#">
-                    <i class="ti-eye"></i>
-                  </a>
-                  <a href="#">
-                    <i class="ti-heart"></i>
-                  </a>
-                  <a href="#">
-                    <i class="ti-shopping-cart"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="product-btm">
-                <a href="#" class="d-block">
-                  <h4>Nike latest sneaker</h4>
-                </a>
-                <div class="mt-3">
-                  <span class="mr-4">$25.00</span>
-                  <del>$35.00</del>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-
 
         </div>
       </div>

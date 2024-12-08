@@ -26,6 +26,12 @@
     width: 100%;
     object-fit: cover;
   }
+
+  .avatar-comment{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
 </style>
 
 <!--================Home Banner Area =================-->
@@ -602,6 +608,7 @@
 
 
   function renderComment($data){
+    console.log($data);
     const oldList = document.querySelector('.comment_list');
     const newList = document.createElement('div');
     newList.classList.add('comment_list');
@@ -610,7 +617,7 @@
                     <div class="review_item">
                 <div class="media">
                   <div class="d-flex">
-                    <img src="public/lib/img/product/single-product/review-1.png" alt="" />
+                    <img class="avatar-comment" src="public/img/avatar-default.png" alt="" />
                   </div>
                   <div class="media-body">
                     <h4>${item.fullname}</h4>
