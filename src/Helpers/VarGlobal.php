@@ -21,17 +21,17 @@ $web_root .= '/' . implode("/",$arrPath) . "" ;
 
 
 
-// $web_root = 'https://web2.fptduyvan.id.vn/';
-// define("DB_HOST", "localhost");
-// define("DB_NAME", "duan1");
-// define("DB_USER", "doanduyvan");
-// define("DB_PASS", "doanduyvan");
+$web_root = 'https://web2.fptduyvan.id.vn/';
+define("DB_HOST", "localhost");
+define("DB_NAME", "duan1");
+define("DB_USER", "doanduyvan");
+define("DB_PASS", "doanduyvan");
 
-$web_root = 'http://localhost:8085/';
-define("DB_HOST", "db");
-define("DB_NAME", "duan1_3");
-define("DB_USER", "root");
-define("DB_PASS", "123");
+// $web_root = 'http://localhost:8085/';
+// define("DB_HOST", "db");
+// define("DB_NAME", "duan1_3");
+// define("DB_USER", "root");
+// define("DB_PASS", "123");
 
 define("WEB_ROOT", $web_root);
 
