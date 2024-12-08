@@ -68,7 +68,8 @@
 
 
 <script>
-    const arrProducts = <?php echo json_encode($products); ?>;
+    let arrProducts = <?php echo json_encode($products); ?>;
+    arrProducts = arrProducts.reverse();
 
     console.log(arrProducts);
     showproducts(arrProducts);
